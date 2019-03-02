@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/refresh"
+        android:title="刷新" />
+    <item
+        android:id="@+id/day"
+        android:title="今日数据" />
+    <item
+        android:id="@+id/week"
+        android:title="本周数据" />
+    <item
+        android:id="@+id/year"
+        android:title="本年数据" />
+    <item
+        android:id="@+id/self"
+        android:title="自定义" />
+</menu>
