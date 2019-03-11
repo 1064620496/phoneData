@@ -46,6 +46,8 @@ public class CountFragment extends Fragment {
     private BarChart barChart;
     private PieChart pieChart;
     private List<ILineDataSet> lineDataSets = new ArrayList<>();
+    private ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+    private List<PieEntry>list=new ArrayList<>();
     int changeTimes=0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,12 +55,12 @@ public class CountFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_count,null);
         setHasOptionsMenu(true);
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent,
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.current_time_bg);
+        swipeRefreshLayout.setColorSchemeResources(R.color.first,
+                R.color.second,
+                R.color.third,
+                R.color.forth);
         swipeRefreshLayout.setSize(SwipeRefreshLayout.LARGE);;
-        swipeRefreshLayout.setProgressBackgroundColor(R.color.current_time_text);
+        swipeRefreshLayout.setProgressBackgroundColor(R.color.bg);
         //swipeRefreshLayout.setPadding(20, 20, 20, 20);
         //swipeRefreshLayout.setProgressViewOffset(true, 100, 200);
         //swipeRefreshLayout.setDistanceToTriggerSync(50);
@@ -87,14 +89,14 @@ public class CountFragment extends Fragment {
         //handler
         //linechart、barchart、piechart初始化
         lineChart=view.findViewById(R.id.lineChart);
-        lineChart.setBackgroundColor(0xff00ff00);
+        //lineChart.setBackgroundColor(getResources().getColor(R.color.linechartbg));
         Description des=new Description();
         des.setText("ltyforeveralive");
-        des.setTextColor(0xff5500ff);
+        des.setTextColor(getResources().getColor(R.color.linecharttext));
         des.setTextSize(10f);
         lineChart.setDescription(des);
         lineChart.setDrawBorders(true);//边框
-        lineChart.setBorderColor(0xffff0000);
+        lineChart.setBorderColor(getResources().getColor(R.color.linechartborder));
         lineChart.invalidate(); // refresh
         barChart=view.findViewById(R.id.chart1);
         barChart.setDrawBarShadow(false);
@@ -192,7 +194,7 @@ public class CountFragment extends Fragment {
         PieEntry pieEntry3 = new PieEntry(15f,"杭州");
         PieEntry pieEntry4 = new PieEntry(35f,"深圳");
 
-        List<PieEntry>list=new ArrayList<>();
+        list.clear();
         list.add(pieEntry1);list.add(pieEntry2);list.add(pieEntry3);list.add(pieEntry4);
 
 
@@ -218,7 +220,7 @@ public class CountFragment extends Fragment {
 
         //模拟数据
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        yVals1.clear();
 
         yVals1.add(new BarEntry(1.2f, 10));
 
@@ -283,16 +285,22 @@ public class CountFragment extends Fragment {
             entries.add(new Entry(i*1, i*changeTimes));//(i,i)代表一个点
         }
         LineDataSet dataSet = new LineDataSet(entries, "first"); // add entries to dataset
-        dataSet.setColor(R.color.colorAccent);
-        dataSet.setValueTextColor(R.color.current_time_text);
+        dataSet.setDrawValues(true);
+        dataSet.setColor(getResources().getColor(R.color.first));
+        dataSet.setValueTextColor(getResources().getColor(R.color.linecharttext));
+        dataSet.setValueTextSize(10f);
+        dataSet.setLineWidth(3f);
         List<Entry> entries2 = new ArrayList<Entry>();//Entry 为mpandroid中对象，放置xy坐标数据
         for(int i=0;i<10;i++)
         {
             entries2.add(new Entry(i*1, i*2));//(i,i)代表一个点
         }
         LineDataSet dataSet2 = new LineDataSet(entries2, "second"); // add entries to dataset
-        dataSet2.setColor(R.color.colorAccent);
-        dataSet2.setValueTextColor(R.color.current_time_text);
+        dataSet2.setDrawValues(true);
+        dataSet2.setColor(getResources().getColor(R.color.third));
+        dataSet2.setValueTextColor(getResources().getColor(R.color.linecharttext));
+        dataSet2.setValueTextSize(10f);
+        dataSet2.setLineWidth(3f);
         lineDataSets.add(dataSet);
         lineDataSets.add(dataSet2);
     }
